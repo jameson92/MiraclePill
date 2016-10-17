@@ -9,9 +9,11 @@
 import UIKit
 
 class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate {
-
+    
     @IBOutlet weak var statePicker: UIPickerView!
     @IBOutlet weak var statePickerBtn: UIButton!
+    @IBOutlet weak var successImage: UIImageView!
+    
     let states = [ "AK - Alaska",
                    "AL - Alabama",
                    "AR - Arkansas",
@@ -72,7 +74,9 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
         super.viewDidLoad()
         statePicker.dataSource = self
         statePicker.delegate = self
+        successImage.isHidden = true
     }
+
  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -98,6 +102,14 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         statePickerBtn.setTitle(states[row], for: UIControlState.normal)
         statePicker.isHidden = true
+        
+    }
+    
+    @IBAction func buyNowBtn(_ sender: Any) {
+        for i in 1...17 {
+          view.viewWithTag(i)?.isHidden = true
+        }
+        successImage.isHidden = false
         
     }
     
